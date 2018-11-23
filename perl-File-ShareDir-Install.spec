@@ -4,7 +4,7 @@
 #
 Name     : perl-File-ShareDir-Install
 Version  : 0.13
-Release  : 5
+Release  : 6
 URL      : http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/File-ShareDir-Install-0.13.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/File-ShareDir-Install-0.13.tar.gz
 Summary  : 'Install shared files'
