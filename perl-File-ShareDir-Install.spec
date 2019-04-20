@@ -4,10 +4,10 @@
 #
 Name     : perl-File-ShareDir-Install
 Version  : 0.13
-Release  : 10
+Release  : 11
 URL      : http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/File-ShareDir-Install-0.13.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/File-ShareDir-Install-0.13.tar.gz
-Summary  : 'Install shared files'
+Summary  : File::ShareDir::Install - Install read-only data files from a distribution
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-File-ShareDir-Install-license = %{version}-%{release}
@@ -22,6 +22,7 @@ Install shared files
 Summary: dev components for the perl-File-ShareDir-Install package.
 Group: Development
 Provides: perl-File-ShareDir-Install-devel = %{version}-%{release}
+Requires: perl-File-ShareDir-Install = %{version}-%{release}
 
 %description dev
 dev components for the perl-File-ShareDir-Install package.
