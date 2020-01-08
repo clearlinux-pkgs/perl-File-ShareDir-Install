@@ -4,13 +4,14 @@
 #
 Name     : perl-File-ShareDir-Install
 Version  : 0.13
-Release  : 13
+Release  : 14
 URL      : http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/File-ShareDir-Install-0.13.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/File-ShareDir-Install-0.13.tar.gz
-Summary  : File::ShareDir::Install - Install read-only data files from a distribution
+Summary  : 'Install shared files'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-File-ShareDir-Install-license = %{version}-%{release}
+Requires: perl-File-ShareDir-Install-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -36,14 +37,24 @@ Group: Default
 license components for the perl-File-ShareDir-Install package.
 
 
+%package perl
+Summary: perl components for the perl-File-ShareDir-Install package.
+Group: Default
+Requires: perl-File-ShareDir-Install = %{version}-%{release}
+
+%description perl
+perl components for the perl-File-ShareDir-Install package.
+
+
 %prep
 %setup -q -n File-ShareDir-Install-0.13
+cd %{_builddir}/File-ShareDir-Install-0.13
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -53,7 +64,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -62,7 +73,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-File-ShareDir-Install
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-File-ShareDir-Install/LICENSE
+cp %{_builddir}/File-ShareDir-Install-0.13/LICENSE %{buildroot}/usr/share/package-licenses/perl-File-ShareDir-Install/58243c3de2463126a3a838b6c161fc3b11678eaa
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -75,7 +86,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/File/ShareDir/Install.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -83,4 +93,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-File-ShareDir-Install/LICENSE
+/usr/share/package-licenses/perl-File-ShareDir-Install/58243c3de2463126a3a838b6c161fc3b11678eaa
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/File/ShareDir/Install.pm
